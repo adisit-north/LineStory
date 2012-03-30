@@ -3,8 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Timeline JSON Template</title>
-		<meta name="description" content="Template Description">
-		<meta name="author" content="Zach Wise">
 		
 		<!-- Set the viewport for mobile devices -->
 		<!-- <meta name="viewport" content="width=device-width,maximum-scale=1.0" /> -->
@@ -12,16 +10,17 @@
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 		<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
 		<!-- CSS -->
 		<link href="../../timeline.css" rel="stylesheet">
-		
+		<link href="../../bootstrap.css" rel="stylesheet">
+        
 		<!-- JavaScript -->
 		<script type="text/javascript" src="../../jquery-min.js"></script>
-		<!-- <script type="text/javascript" src="jquery.mobile-1.0.min.js"></script> -->
 		<script type="text/javascript" src="../../timeline-min.js"></script>
+        
 		<script>
 			$(document).ready(function() {
 				var timeline = new VMM.Timeline();
@@ -29,12 +28,43 @@
 			});
 		</script>
 
-
+		<style type="text/css">
+			body {
+				padding-top: 40px;
+				padding-bottom: 40px;
+			}
+			#timeline {
+				height:600px;
+				position:relative;
+				z-index:100;
+				clear:both;
+				
+			}
+			.timeline-example {
+				background-color: #FFF;
+				margin-bottom:20px;
+				border: 1px solid #CCC;
+				padding-top:20px;
+				padding-bottom:20px;
+				clear:both
+				-webkit-border-radius: 10px;
+			     -moz-border-radius: 10px;
+			          border-radius: 10px;
+				-moz-box-shadow: 0 1px 3px rgba(0,0,0,.25);
+					-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.25);
+					box-shadow: 1px 2px 6px rgba(0,0,0,.25);
+					
+			}
+			
+		</style>
 	</head>
 
 	<body>
-		<span id = "zone1" style="width: 800px;" ><div id="timeline"></div></span>
-		<span id = "zone2" style="width: 200px;" ></span>
+		<div class="container">
+            <div class="timeline-example">
+                <div id="timeline"></div>
+            </div>		
+		</div>
 		
 		
 		

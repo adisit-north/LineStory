@@ -1,17 +1,14 @@
-<img src="IMG_0271.JPG" height="500">
+
 <?php
 
 
-
-if ($c = getCoordinates("./IMG_0271.JPG")) {
-    $latitude = $c[0];
-    $longitude = $c[1];
-	
-	echo "<br>";
-	echo "latitude : $latitude <br>";
-	echo "longitude : $longitude <br>";
-	
-	
+function readData($filename) {
+	if (extension_loaded('exif')) {
+		$exif = exif_read_data($filename, 'EXIF');
+		
+		return $exif;
+	}
+	return "";
 }
 
 function exifToNumber($value, $format) {
@@ -46,13 +43,19 @@ function getCoordinates($filename) {
 			isset($exif['GPSLongitudeRef']) && isset($exif['GPSLongitude'])) {
 			return array (
 				exifToCoordinate($exif['GPSLatitudeRef'], $exif['GPSLatitude']), 
-				exifToCoordinate($exif['GPSLongitudeRef'], $exif['GPSLongitude'])
+				exifToCoordinate($exif['GPSLongitudeRef'], $exif['GPSLongitude']),
+				dateConverse($exif['DateTimeOriginal'])
 			);
 		}
 	}
 }
 
 
+function dateConverse($exifDate){
+	$exifPieces = split(" ", $exifDate);
+	return str_replace(":","-",$exifPieces[0])." ".$exifPieces[1];
+	
+}
 
 function coordinate2DMS($coordinate, $pos, $neg) {
 	$sign = $coordinate >= 0 ? $pos : $neg;

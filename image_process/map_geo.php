@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <?
 	include ('geotag.php');
-	if ($c = getCoordinates("./IMG_0271.JPG")) {
+	
+	$filename = 'IMG_0271.JPG';
+	
+	if ($c = getCoordinates($filename)) {
 		$latitude = $c[0];
 		$longitude = $c[1];
+		$DateTimeOriginal = $c[2];
 			
 	}
+	
+//	$date=split(':',str_replace(' ',':',$DateTimeOriginal)); 
+//	$date = strtotime("{$date[0]}-{$date[1]}-{$date[2]} {$date[3]}:{$date[4]}:{$date[5]}");
+
+
+	echo "latitude : $latitude <br>";
+	echo "longitude : $longitude <br>";
+	echo "DateTimeOriginal : $DateTimeOriginal <br>";
+
 ?>
 <html>
   <head>

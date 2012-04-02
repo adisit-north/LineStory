@@ -13,3 +13,23 @@
 body{
   padding-top: 60px;
 }
+
+#dropzone {
+    text-align: center;
+	
+    font-weight: bold;
+}
+#dropzone.in {
+    height: 100px;
+    font-size: larger;
+}
+#dropzone.hover {
+}
+#dropzone.fade {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 1;
+}

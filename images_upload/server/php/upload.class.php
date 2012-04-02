@@ -287,7 +287,7 @@ class UploadHandler
             $file_size = filesize($file_path);
             if ($file_size === $file->size) {
             	if ($this->options['orient_image']) {
-            		$this->orient_image($file_path);
+            		//$this->orient_image($file_path);
             	}
                 $file->url = $this->options['upload_url'].rawurlencode($file->name);
                 foreach($this->options['image_versions'] as $version => $options) {
@@ -332,9 +332,11 @@ class UploadHandler
         $upload = isset($_FILES[$this->options['param_name']]) ?
             $_FILES[$this->options['param_name']] : null;
         $info = array();
+		
         if ($upload && is_array($upload['tmp_name'])) {
             // param_name is an array identifier like "files[]",
             // $_FILES is a multi-dimensional array:
+			
             foreach ($upload['tmp_name'] as $index => $value) {
                 $info[] = $this->handle_file_upload(
                     $upload['tmp_name'][$index],
@@ -347,20 +349,16 @@ class UploadHandler
                     $upload['error'][$index]
                 );
             }
+			
         } elseif ($upload || isset($_SERVER['HTTP_X_FILE_NAME'])) {
             // param_name is a single object identifier like "file",
             // $_FILES is a one-dimensional array:
+			
             $info[] = $this->handle_file_upload(
                 isset($upload['tmp_name']) ? $upload['tmp_name'] : null,
-                isset($_SERVER['HTTP_X_FILE_NAME']) ?
-                    $_SERVER['HTTP_X_FILE_NAME'] : (isset($upload['name']) ?
-                        $upload['name'] : null),
-                isset($_SERVER['HTTP_X_FILE_SIZE']) ?
-                    $_SERVER['HTTP_X_FILE_SIZE'] : (isset($upload['size']) ?
-                        $upload['size'] : null),
-                isset($_SERVER['HTTP_X_FILE_TYPE']) ?
-                    $_SERVER['HTTP_X_FILE_TYPE'] : (isset($upload['type']) ?
-                        $upload['type'] : null),
+                isset($_SERVER['HTTP_X_FILE_NAME']) ? $_SERVER['HTTP_X_FILE_NAME'] : (isset($upload['name']) ? $upload['name'] : null),
+                isset($_SERVER['HTTP_X_FILE_SIZE']) ? $_SERVER['HTTP_X_FILE_SIZE'] : (isset($upload['size']) ? $upload['size'] : null),
+                isset($_SERVER['HTTP_X_FILE_TYPE']) ? $_SERVER['HTTP_X_FILE_TYPE'] : (isset($upload['type']) ? $upload['type'] : null),
                 isset($upload['error']) ? $upload['error'] : null
             );
         }
